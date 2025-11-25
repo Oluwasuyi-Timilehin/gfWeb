@@ -7,7 +7,7 @@ const LoveLetter = ({ onNext, onBack }) => {
     <div className="min-h-screen mx-auto flex items-center justify-center px-4 py-8">
       <div className="max-w-4xl mx-auto w-full">
         {/* Header */}
-        <div className="text-center mb-12 animate-fade-in lg:mb-5">
+        <div className="text-center mb-12 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-['Dancing_Script']">
             My Heart in Words
           </h1>
