@@ -59,7 +59,7 @@ const Memories = ({ onNext, onBack }) => {
                 onClick={() => setSelectedMemory(index)}
               >
                 <div className="flex items-center gap-4">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${memory.color} flex items-center justify-center text-white text-2xl shadow-lg`}>
+                  <div className={`w-16 h-16 rounded-2xl bg-linear-to-r ${memory.color} flex items-center justify-center text-white text-2xl shadow-lg`}>
                     {memory.emoji}
                   </div>
                   <div className="flex-1">
@@ -75,7 +75,7 @@ const Memories = ({ onNext, onBack }) => {
           </div>
 
           {/* Memory Detail */}
-          <div className="bg-gradient-to-br from-pink-500 to-rose-600 rounded-3xl p-8 text-white shadow-2xl animate-slide-in-right">
+          <div className="bg-linear-to-br from-pink-500 to-rose-600 rounded-3xl p-8 text-white shadow-2xl animate-slide-in-right">
             <div className="text-center mb-6">
               <div className="text-6xl mb-4 animate-float">
                 {memories[selectedMemory].emoji}
@@ -117,7 +117,7 @@ const Memories = ({ onNext, onBack }) => {
           
           <button
             onClick={onNext}
-            className="flex items-center gap-2 text-sm transition-all bg-gradient-to-r from-pink-500 to-rose-500 text-white px-5 py-3 rounded-full font-semibold hover:from-pink-600 hover:to-rose-600 transform hover:scale-105 lg:text-lg"
+            className="flex items-center gap-2 text-sm transition-all bg-linear-to-r from-pink-500 to-rose-500 text-white px-5 py-3 rounded-full font-semibold hover:from-pink-600 hover:to-rose-600 transform hover:scale-105 lg:text-lg"
           >
             View Our Gallery
             <span>→</span>

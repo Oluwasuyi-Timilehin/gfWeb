@@ -23,7 +23,7 @@ const LoveLetter = ({ onNext, onBack }) => {
               }`}
               onClick={() => setIsOpen(true)}
             >
-              <div className="bg-gradient-to-br from-pink-500 to-rose-600 p-10 rounded-2xl shadow-2xl text-center">
+              <div className="bg-linear-to-br from-pink-500 to-rose-600 p-10 rounded-2xl shadow-2xl text-center">
                 <div className="text-6xl mb-4">💌</div>
                 <h3 className="text-2xl font-bold text-white mb-2">To My Beautiful Girl</h3>
                 <p className="text-pink-100">Click to open my heart</p>
@@ -88,7 +88,7 @@ const LoveLetter = ({ onNext, onBack }) => {
             disabled={!isOpen}
             className={`flex items-center gap-2 px-5 py-3 rounded-full font-semibold transition-all ${
               isOpen 
-                ? 'text-white text-sm transform cursor-pointer bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 hover:scale-105 lg:text-lg' 
+                ? 'text-white text-sm transform cursor-pointer bg-linear-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 hover:scale-105 lg:text-lg' 
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
             }`}
           >
