@@ -188,7 +188,7 @@ const Gallery = ({ onNext, onBack }) => {
               return (
                 <div
                   key={item.id}
-                  className={`absolute w-64 md:w-80 h-72 md:h-96 rounded-2xl shadow-2xl transition-all duration-500 ease-in-out bg-gradient-to-br ${item.bgGradient} ${
+                  className={`absolute w-64 md:w-80 h-72 md:h-96 rounded-2xl shadow-2xl transition-all duration-500 ease-in-out bg-linear-to-br ${item.bgGradient} ${
                     Math.abs(offset) > 1 ? 'hidden md:block' : ''
                   }`}
                   style={{
@@ -230,7 +230,7 @@ const Gallery = ({ onNext, onBack }) => {
 
           {/* Main Center Card */}
           <div className="relative z-20 flex items-center justify-center">
-            <div className={`w-80 md:w-96 h-80 md:h-[450px] rounded-3xl shadow-2xl bg-gradient-to-br ${mediaItems[currentIndex].bgGradient} transform transition-all duration-500 ease-in-out ${
+            <div className={`w-80 md:w-96 h-80 md:h-[450px] rounded-3xl shadow-2xl bg-linear-to-br ${mediaItems[currentIndex].bgGradient} transform transition-all duration-500 ease-in-out ${
               isAnimating ? 'scale-95' : 'scale-100'
             }`}>
               <div className="absolute inset-0 bg-black/10 rounded-3xl overflow-hidden">
@@ -277,7 +277,7 @@ const Gallery = ({ onNext, onBack }) => {
                 </div>
 
                 {/* Overlay with Text */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white">
+                <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-6 text-white">
                   <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">
                     {mediaItems[currentIndex].caption}
                   </h2>
@@ -319,7 +319,7 @@ const Gallery = ({ onNext, onBack }) => {
                       setTimeout(() => setIsAnimating(false), 500)
                     }
                   }}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 flex-shrink-0 ${
+                  className={`w-2 h-2 rounded-full transition-all duration-300 shrink-0 ${
                     index === currentIndex 
                       ? 'bg-white scale-125' 
                       : 'bg-white/50 hover:bg-white/80'
@@ -376,7 +376,7 @@ const Gallery = ({ onNext, onBack }) => {
           
           <button
             onClick={onNext}
-            className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transform hover:scale-105 transition-all text-sm lg:text-base"
+            className="flex items-center gap-2 bg-linear-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transform hover:scale-105 transition-all text-sm lg:text-base"
           >
             Special Message
             <span>→</span>
