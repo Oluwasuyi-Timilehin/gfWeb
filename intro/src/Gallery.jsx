@@ -1,31 +1,34 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Gallery = ({ onNext, onBack }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+  const videoRef = useRef(null);
 
   // 15 Media Items
   const mediaItems = [
     {
       id: 1,
       type: "image",
-      src: "/images/beautiful-smile-1.jpg", // Replace with your image
-      caption: "Your Beautiful Smile",
-      description: "The smile that lights up my world every single day",
+      src: "/images/we1.jpg",
+      caption: "Laughing Together",
+      description: "Your laughter is my favorite sound in the world",
       bgGradient: "from-pink-400 to-rose-500",
     },
     {
       id: 2,
       type: "video",
-      src: "/videos/special-moments-1.mp4", // Replace with your video
-      caption: "Laughing Together",
-      description: "Your laughter is my favorite sound in the world",
+      src: "/videos/vid2.mp4",
+      poster: "/images/video-poster.jpg",
+      caption: "Your Beautiful Smile",
+      description: "The smile that lights up my world every single day",
       bgGradient: "from-purple-400 to-pink-500",
     },
     {
       id: 3,
       type: "image",
-      src: "/images/adventure-1.jpg", // Replace with your image
+      src: "/images/we2.jpg",
       caption: "Your Adventurous Spirit",
       description: "Exploring the world with my favorite person",
       bgGradient: "from-blue-400 to-purple-500",
@@ -33,31 +36,33 @@ const Gallery = ({ onNext, onBack }) => {
     {
       id: 4,
       type: "video",
-      src: "/videos/happy-dance-1.mp4", // Replace with your video
+      src: "/videos/happy-dance-1.mp4",
+      poster: "/images/video-poster.jpg",
       caption: "Happy Moments",
       description: "Seeing you happy is my greatest joy",
       bgGradient: "from-green-400 to-blue-500",
     },
     {
       id: 5,
-      type: "image",
-      src: "/images/radiant-beauty-1.jpg", // Replace with your image
+      type: "video",
+      src: "/videos/vid1.mp4",
       caption: "Your Radiant Beauty",
       description: "You shine brighter than any star in the sky",
       bgGradient: "from-yellow-400 to-orange-500",
     },
     {
       id: 6,
-      type: "video",
-      src: "/videos/celebration-1.mp4", // Replace with your video
+      type: "image",
+      src: "/videos/celebration-1.mp4",
+      poster: "/images/video-poster.jpg",
       caption: "Celebrating You",
       description: "Every moment with you is worth celebrating",
       bgGradient: "from-red-400 to-pink-500",
     },
     {
       id: 7,
-      type: "image",
-      src: "/images/beautiful-eyes-1.jpg", // Replace with your image
+      type: "video",
+      src: "/videos/vid4.mp4",
       caption: "Your Beautiful Eyes",
       description: "Getting lost in your eyes is my favorite pastime",
       bgGradient: "from-indigo-400 to-purple-500",
@@ -65,7 +70,8 @@ const Gallery = ({ onNext, onBack }) => {
     {
       id: 8,
       type: "video",
-      src: "/videos/fun-times-1.mp4", // Replace with your video
+      src: "/videos/fun-times-1.mp4",
+      poster: "/images/video-poster.jpg",
       caption: "Fun Times",
       description: "Life is always an adventure with you",
       bgGradient: "from-teal-400 to-green-500",
@@ -73,7 +79,7 @@ const Gallery = ({ onNext, onBack }) => {
     {
       id: 9,
       type: "image",
-      src: "/images/romantic-1.jpg", // Replace with your image
+      src: "/images/romantic-1.jpg",
       caption: "Romantic Moments",
       description: "Every moment with you feels like a dream",
       bgGradient: "from-rose-400 to-red-500",
@@ -81,7 +87,8 @@ const Gallery = ({ onNext, onBack }) => {
     {
       id: 10,
       type: "video",
-      src: "/videos/dancing-1.mp4", // Replace with your video
+      src: "/videos/dancing-1.mp4",
+      poster: "/images/video-poster.jpg",
       caption: "Dancing Together",
       description: "You make every moment magical",
       bgGradient: "from-amber-400 to-orange-500",
@@ -89,44 +96,66 @@ const Gallery = ({ onNext, onBack }) => {
     {
       id: 11,
       type: "image",
-      src: "/images/sunset-1.jpg", // Replace with your image
-      caption: "Sunset Moments",
-      description: "Beautiful sunsets with my beautiful person",
-      bgGradient: "from-sky-400 to-blue-500",
-    },
-    {
-      id: 12,
-      type: "video",
-      src: "/videos/travel-1.mp4", // Replace with your video
-      caption: "Travel Adventures",
-      description: "Making memories around the world together",
-      bgGradient: "from-emerald-400 to-teal-500",
-    },
-    {
-      id: 13,
-      type: "image",
-      src: "/images/candid-1.jpg", // Replace with your image
+      src: "/images/we4.jpg",
       caption: "Candid Beauty",
       description: "Your natural beauty takes my breath away",
       bgGradient: "from-violet-400 to-purple-500",
     },
     {
-      id: 14,
+      id: 12,
       type: "video",
-      src: "/videos/surprise-1.mp4", // Replace with your video
+      src: "/videos/surprise-1.mp4",
+      poster: "/images/video-poster.jpg",
       caption: "Sweet Surprises",
       description: "You always know how to make me smile",
       bgGradient: "from-fuchsia-400 to-pink-500",
     },
     {
-      id: 15,
+      id: 13,
       type: "image",
-      src: "/images/together-1.jpg", // Replace with your image
+      src: "/images/together-1.jpg",
       caption: "Our Journey",
       description: "The beginning of our beautiful forever",
       bgGradient: "from-cyan-400 to-blue-500",
     },
   ];
+
+ // Handle video playback when slide changes
+useEffect(() => {
+  const currentVideoRef = videoRef.current;
+
+  // Stop old video
+  if (currentVideoRef) {
+    currentVideoRef.pause();
+    currentVideoRef.currentTime = 0;
+  }
+
+  const currentItem = mediaItems[currentIndex];
+
+  // If this slide is a video
+  if (currentItem.type === "video") {
+    setVideoError(false);
+
+    // SMALL DELAY to allow React to render the new <video>
+    setTimeout(() => {
+      const vid = videoRef.current;
+      if (!vid) return;
+
+      vid.load(); // Make browser reload the video
+
+      // TRY PLAYING THE VIDEO
+      vid.play()
+        .then(() => {
+          console.log("Video autoplayed successfully");
+        })
+        .catch(err => {
+          console.log("Autoplay blocked:", err);
+        });
+
+    }, 200);
+  }
+}, [currentIndex]);
+
 
   const nextSlide = () => {
     if (isAnimating) return;
@@ -138,10 +167,17 @@ const Gallery = ({ onNext, onBack }) => {
   const prevSlide = () => {
     if (isAnimating) return;
     setIsAnimating(true);
-    setCurrentIndex(
-      (prev) => (prev - 1 + mediaItems.length) % mediaItems.length
-    );
+    setCurrentIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
     setTimeout(() => setIsAnimating(false), 500);
+  };
+
+  const handleVideoError = (e) => {
+    console.error("Video failed to load:", e.target.src);
+    setVideoError(true);
+  };
+
+  const handleVideoLoad = () => {
+    setVideoError(false);
   };
 
   // Keyboard navigation
@@ -155,10 +191,8 @@ const Gallery = ({ onNext, onBack }) => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isAnimating]);
 
-  // Function to handle image loading errors
   const handleImageError = (e) => {
     console.log("Image failed to load:", e.target.src);
-    // Fallback to gradient background
     e.target.style.display = "none";
   };
 
@@ -183,16 +217,18 @@ const Gallery = ({ onNext, onBack }) => {
           {/* Background Cards */}
           <div className="absolute inset-0 flex items-center justify-center">
             {[-2, -1, 1, 2].map((offset) => {
-              const index =
-                (currentIndex + offset + mediaItems.length) % mediaItems.length;
+              const index = (currentIndex + offset + mediaItems.length) % mediaItems.length;
               const item = mediaItems[index];
               const scale = 1 - Math.abs(offset) * 0.15;
               const opacity = 1 - Math.abs(offset) * 0.3;
               const translateX = offset * 80;
 
+              // Create unique key by combining item id and offset
+              const uniqueKey = `${item.id}-${offset}`;
+
               return (
                 <div
-                  key={item.id}
+                  key={uniqueKey} // Use unique key here
                   className={`absolute w-64 md:w-80 h-72 md:h-96 rounded-2xl shadow-2xl transition-all duration-500 ease-in-out bg-linear-to-br ${
                     item.bgGradient
                   } ${Math.abs(offset) > 1 ? "hidden md:block" : ""}`}
@@ -245,8 +281,6 @@ const Gallery = ({ onNext, onBack }) => {
               }`}
             >
               <div className="absolute inset-0 bg-black/10 rounded-3xl overflow-hidden">
-                {/* Media Type Badge */}
-                
                 {/* Counter Badge */}
                 <div className="absolute top-4 right-4 z-10">
                   <div className="px-3 py-1 rounded-full text-xs font-semibold bg-black/50 backdrop-blur-sm text-white">
@@ -264,17 +298,41 @@ const Gallery = ({ onNext, onBack }) => {
                       onError={handleImageError}
                     />
                   ) : (
-                    <video
-                      src={mediaItems[currentIndex].src}
-                      className="w-full h-full object-cover"
-                      controls
-                      poster="/images/video-poster.jpg"
-                      onError={(e) => {
-                        console.log("Video failed to load:", e.target.src);
-                      }}
-                    >
-                      Your browser does not support the video tag.
-                    </video>
+                    <div className="w-full h-full relative">
+                      <video
+                        ref={videoRef}
+                        src={mediaItems[currentIndex].src}
+                        className="w-full h-full object-cover"
+                        controls
+                        muted
+                        playsInline
+                        preload="metadata"
+                        poster={mediaItems[currentIndex].poster}
+                        onError={handleVideoError}
+                        onLoadedData={handleVideoLoad}
+                      >
+                        Your browser does not support the video tag.
+                      </video>
+                      
+                      {/* Video Error Fallback */}
+                      {videoError && (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 text-white p-4">
+                          <div className="text-4xl mb-2">🎬</div>
+                          <p className="text-center text-sm mb-2">
+                            Video couldn't load
+                          </p>
+                          <p className="text-center text-xs opacity-75">
+                            {mediaItems[currentIndex].caption}
+                          </p>
+                          <button
+                            onClick={() => window.location.reload()}
+                            className="mt-2 px-3 py-1 bg-white/20 rounded text-xs"
+                          >
+                            Retry
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   )}
                 </div>
 
@@ -308,12 +366,12 @@ const Gallery = ({ onNext, onBack }) => {
             <span className="text-2xl text-gray-800">→</span>
           </button>
 
-          {/* Progress Dots - Now scrollable for many items */}
+          {/* Progress Dots */}
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30">
-            <div className="flex gap-1 max-w-64 overflow-x-auto pb-2 scrollbar-hide">
+            <div className="flex gap-1 max-w-64 overflow-x-auto pb-2">
               {mediaItems.map((_, index) => (
                 <button
-                  key={index}
+                  key={index} // This is fine since it's a simple array index
                   onClick={() => {
                     if (!isAnimating) {
                       setIsAnimating(true);
@@ -354,14 +412,14 @@ const Gallery = ({ onNext, onBack }) => {
         <div className="flex justify-between items-center px-4">
           <button
             onClick={onBack}
-            className="flex items-center text-gray-600 hover:text-gray-800 font-semibold transition-colors text-sm lg:text-lg"
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-800 font-semibold transition-colors"
           >
-            ← To Memories
+            ← Back to Memories
           </button>
 
           <button
             onClick={onNext}
-            className="flex text-sm items-center bg-linear-to-r from-purple-500 to-pink-500 text-white px-4 py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transform hover:scale-105 transition-all lg:text-lg"
+            className="flex items-center gap-2 bg-linear-to-r from-pink-500 to-rose-500 text-white px-8 py-3 rounded-full font-semibold hover:from-pink-600 hover:to-rose-600 transform hover:scale-105 transition-all"
           >
             Special Message
             <span>→</span>
