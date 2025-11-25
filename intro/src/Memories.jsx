@@ -7,28 +7,28 @@ const Memories = ({ onNext, onBack }) => {
     {
       title: "Our First Meeting",
       date: "The day everything changed",
-      description: "I'll never forget the moment our eyes first met. You walked into the room and my heart knew it had found its home.",
+      description: "I'll never forget the moment our eyes first met. You walked into the classroom and when our eyes finally met i felt my heart beat faster cause i was nervous and was also astounished by the beauty before my eyes.",
       emoji: "👀",
       color: "from-purple-500 to-pink-500"
     },
     {
-      title: "First Date Magic",
+      title: "Our Beginning",
       date: "The beginning of us",
-      description: "That nervous excitement, the endless conversations, and realizing I never wanted the night to end.",
+      description: "That nervous excitement, the endless conversations after, and realizing I never wanted that day to end. I was filled with happiness knowing i found the perfect girl, and had just asked her to be my girlfriend and she agreed which i'm always grateful for every single day. We walked around a bit, then i had to leave and we hugged and then we finally had our First kiss, a memory forever in my heart.",
       emoji: "🌹",
       color: "from-pink-500 to-rose-500"
     },
     {
       title: "Special Adventure",
       date: "Our unforgettable journey",
-      description: "Remember when we got lost but found the most beautiful view? With you, every detour becomes an adventure.",
+      description: "Remember when we i would be sent to market or going to work and then i'll first have to meet you? But now we can see each other not everyday but more often that before, Remember when we went out and i had to follow your instructions cause i know nowhere but i was still happy seeing you being bossy",
       emoji: "🌟",
       color: "from-rose-500 to-red-500"
     },
     {
       title: "Growing Together",
       date: "Every day with you",
-      description: "Watching our love grow stronger with each passing day. You make ordinary moments extraordinary.",
+      description: "Watching our love grow stronger with each passing day. You make ordinary moments extraordinary. All our arguments, struggles in life but we both still believe in each other and continue to love each other deeply",
       emoji: "💖",
       color: "from-red-500 to-pink-600"
     }

@@ -25,7 +25,7 @@ const LoveLetter = ({ onNext, onBack }) => {
             >
               <div className="bg-gradient-to-br from-pink-500 to-rose-600 p-10 rounded-2xl shadow-2xl text-center">
                 <div className="text-6xl mb-4">💌</div>
-                <h3 className="text-2xl font-bold text-white mb-2">To My Beautiful</h3>
+                <h3 className="text-2xl font-bold text-white mb-2">To My Beautiful Girl</h3>
                 <p className="text-pink-100">Click to open my heart</p>
               </div>
               
