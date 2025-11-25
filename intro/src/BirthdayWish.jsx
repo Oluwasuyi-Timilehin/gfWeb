@@ -40,8 +40,7 @@ const BirthdayWish = ({ onBack }) => {
               <div className="gradient-love rounded-2xl p-6 text-white animate-slide-in-right">
                 <p className="text-2xl font-bold mb-4">🎉 Surprise! 🎉</p>
                 <p>
-                  I have a very special celebration planned for us! Get ready
-                  for an unforgettable day filled with love and surprises!
+                  You are my favorite feeling. Not just a person I admire, but the sensation of peace and joy that fills me when I think of you. You make ordinary days feel like stories I want to tell. You make love feel like a home i've finally found after years of wandering. I don't know how you do it by just by being you, you've made me softer, better, more alive and i'll always cherish that. I love you so much dum dum.
                 </p>
               </div>
             )}
