@@ -4,7 +4,7 @@ const Gallery = ({ onNext, onBack }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // 15 Media Items - REPLACE THESE WITH YOUR ACTUAL IMAGES AND VIDEOS
+  // 15 Media Items
   const mediaItems = [
     {
       id: 1,
