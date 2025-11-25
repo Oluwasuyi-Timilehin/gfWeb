@@ -30,14 +30,13 @@ const Gallery = ({ onNext, onBack }) => {
       type: "image",
       src: "/images/we2.jpg",
       caption: "Your Adventurous Spirit",
-      description: "Exploring the world with my favorite person",
+      description: "The world with my favorite person",
       bgGradient: "from-blue-400 to-purple-500",
     },
     {
       id: 4,
       type: "video",
-      src: "/videos/happy-dance-1.mp4",
-      poster: "/images/video-poster.jpg",
+      src: "/videos/vid9.mp4",
       caption: "Happy Moments",
       description: "Seeing you happy is my greatest joy",
       bgGradient: "from-green-400 to-blue-500",
@@ -52,10 +51,9 @@ const Gallery = ({ onNext, onBack }) => {
     },
     {
       id: 6,
-      type: "image",
-      src: "/videos/celebration-1.mp4",
-      poster: "/images/video-poster.jpg",
-      caption: "Celebrating You",
+      type: "video",
+      src: "/videos/vid5.mp4",
+      caption: "You",
       description: "Every moment with you is worth celebrating",
       bgGradient: "from-red-400 to-pink-500",
     },
@@ -70,8 +68,7 @@ const Gallery = ({ onNext, onBack }) => {
     {
       id: 8,
       type: "video",
-      src: "/videos/fun-times-1.mp4",
-      poster: "/images/video-poster.jpg",
+      src: "/videos/vid6.mp4",
       caption: "Fun Times",
       description: "Life is always an adventure with you",
       bgGradient: "from-teal-400 to-green-500",
@@ -79,83 +76,81 @@ const Gallery = ({ onNext, onBack }) => {
     {
       id: 9,
       type: "image",
-      src: "/images/romantic-1.jpg",
-      caption: "Romantic Moments",
-      description: "Every moment with you feels like a dream",
-      bgGradient: "from-rose-400 to-red-500",
+      src: "/images/we3.jpg",
+      caption: "Candid Beauty",
+      description: "Your natural beauty takes my breath away",
+      bgGradient: "from-violet-400 to-purple-500",
     },
     {
       id: 10,
       type: "video",
-      src: "/videos/dancing-1.mp4",
+      src: "/videos/vid8t.mp4",
       poster: "/images/video-poster.jpg",
-      caption: "Dancing Together",
+      caption: "Moments Together",
       description: "You make every moment magical",
       bgGradient: "from-amber-400 to-orange-500",
     },
     {
       id: 11,
       type: "image",
-      src: "/images/we4.jpg",
-      caption: "Candid Beauty",
-      description: "Your natural beauty takes my breath away",
-      bgGradient: "from-violet-400 to-purple-500",
+      src: "/images/we5.jpg",
+      caption: "Your Forehead",
+      description: "No way i will forget about that",
+      bgGradient: "from-cyan-400 to-blue-500",
     },
     {
       id: 12,
       type: "video",
-      src: "/videos/surprise-1.mp4",
-      poster: "/images/video-poster.jpg",
-      caption: "Sweet Surprises",
-      description: "You always know how to make me smile",
-      bgGradient: "from-fuchsia-400 to-pink-500",
+      src: "/videos/vid10t.mp4",
+      caption: "Romantic Moments",
+      description: "Every moment with you feels like a dream",
+      bgGradient: "from-rose-400 to-red-500",
     },
     {
       id: 13,
       type: "image",
-      src: "/images/together-1.jpg",
-      caption: "Our Journey",
-      description: "The beginning of our beautiful forever",
-      bgGradient: "from-cyan-400 to-blue-500",
+      src: "/images/we4.jpg",
+      caption: "Your Beautiful Heart",
+      description: "The kindness in your heart inspires me every day",
+      bgGradient: "from-fuchsia-400 to-pink-500",
     },
   ];
 
- // Handle video playback when slide changes
-useEffect(() => {
-  const currentVideoRef = videoRef.current;
+  // Handle video playback when slide changes
+  useEffect(() => {
+    const currentVideoRef = videoRef.current;
 
-  // Stop old video
-  if (currentVideoRef) {
-    currentVideoRef.pause();
-    currentVideoRef.currentTime = 0;
-  }
+    // Stop old video
+    if (currentVideoRef) {
+      currentVideoRef.pause();
+      currentVideoRef.currentTime = 0;
+    }
 
-  const currentItem = mediaItems[currentIndex];
+    const currentItem = mediaItems[currentIndex];
 
-  // If this slide is a video
-  if (currentItem.type === "video") {
-    setVideoError(false);
+    // If this slide is a video
+    if (currentItem.type === "video") {
+      setVideoError(false);
 
-    // SMALL DELAY to allow React to render the new <video>
-    setTimeout(() => {
-      const vid = videoRef.current;
-      if (!vid) return;
+      // SMALL DELAY to allow React to render the new <video>
+      setTimeout(() => {
+        const vid = videoRef.current;
+        if (!vid) return;
 
-      vid.load(); // Make browser reload the video
+        vid.load(); // Make browser reload the video
 
-      // TRY PLAYING THE VIDEO
-      vid.play()
-        .then(() => {
-          console.log("Video autoplayed successfully");
-        })
-        .catch(err => {
-          console.log("Autoplay blocked:", err);
-        });
-
-    }, 200);
-  }
-}, [currentIndex]);
-
+        // TRY PLAYING THE VIDEO
+        vid
+          .play()
+          .then(() => {
+            console.log("Video autoplayed successfully");
+          })
+          .catch((err) => {
+            console.log("Autoplay blocked:", err);
+          });
+      }, 200);
+    }
+  }, [currentIndex]);
 
   const nextSlide = () => {
     if (isAnimating) return;
@@ -167,7 +162,9 @@ useEffect(() => {
   const prevSlide = () => {
     if (isAnimating) return;
     setIsAnimating(true);
-    setCurrentIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + mediaItems.length) % mediaItems.length
+    );
     setTimeout(() => setIsAnimating(false), 500);
   };
 
@@ -217,7 +214,8 @@ useEffect(() => {
           {/* Background Cards */}
           <div className="absolute inset-0 flex items-center justify-center">
             {[-2, -1, 1, 2].map((offset) => {
-              const index = (currentIndex + offset + mediaItems.length) % mediaItems.length;
+              const index =
+                (currentIndex + offset + mediaItems.length) % mediaItems.length;
               const item = mediaItems[index];
               const scale = 1 - Math.abs(offset) * 0.15;
               const opacity = 1 - Math.abs(offset) * 0.3;
@@ -313,7 +311,7 @@ useEffect(() => {
                       >
                         Your browser does not support the video tag.
                       </video>
-                      
+
                       {/* Video Error Fallback */}
                       {videoError && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 text-white p-4">
