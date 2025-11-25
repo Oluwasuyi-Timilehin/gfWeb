@@ -32,7 +32,7 @@ const BirthdayWish = ({ onBack }) => {
               filled with joy, laughter, and all the love you deserve.
             </p>
 
-            <p className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
+            <p className="text-2xl font-bold bg-linear-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
               You make my world complete, and I cherish every moment with you.
             </p>
 
@@ -51,14 +51,14 @@ const BirthdayWish = ({ onBack }) => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <button
               onClick={() => setShowSurprise(!showSurprise)}
-              className="gradient-love text-sm lg:text-lg text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+              className="gradient-love text-sm lg:text-lg text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
             >
               {showSurprise ? "🎁 Another Surprise?" : "🎀 Click for Surprise!"}
             </button>
 
             <button
               onClick={handleStartOver}
-              className="border-2 text-sm border-pink-500 text-pink-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-pink-50 transform hover:scale-105 transition-all duration-300 lg:text-lg"
+              className="border-2 text-sm border-pink-500 text-pink-600 px-8 py-4 rounded-full font-semibold hover:bg-pink-50 transform hover:scale-105 transition-all duration-300 lg:text-lg"
             >
               Start Over 💖
             </button>
